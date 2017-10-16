@@ -30,7 +30,7 @@ namespace ClassGreeting
 		}
 
 		[Test]
-		public void Greet_should_say_hello_in_uppercase_for_uppercase_name() //3
+		public void Greet_should_shout_for_shouted_name() //3
 		{
 			string greeting = _doorman.Greet("JERRY");
 

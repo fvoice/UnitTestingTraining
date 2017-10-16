@@ -43,11 +43,11 @@ namespace ClassGreeting
 			return FormatNames(expandedNames);
 		}
 
-		private static string FormatNames(string[] names)
+		private string FormatNames(string[] names)
 		{
 			int lastCommaIndex = -1;
 			StringBuilder sb = new StringBuilder();
-			for (int index = 0; index < names.Length; index++)
+			for (int index = 0; index < names.Length; index++) //go through the array of names, can't use string.Join with a special delimiter as name can contain the same symbol
 			{
 				var isLast = index == names.Length - 1;
 				if (isLast)
@@ -69,7 +69,7 @@ namespace ClassGreeting
 			return namesString;
 		}
 
-		private static string[] ExpandComplexNames(string[] names)
+		private string[] ExpandComplexNames(string[] names)
 		{
 			var expandedNames = new List<string>();
 			foreach (var name in names)
