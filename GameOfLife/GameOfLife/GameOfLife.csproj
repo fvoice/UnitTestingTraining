@@ -55,8 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Citizen.cs" />
-    <Compile Include="Universe.cs" />
+    <Compile Include="Artifacts\Citizen.cs" />
+    <Compile Include="Artifacts\Rules\Rule.cs" />
+    <Compile Include="Artifacts\Rules\UnderpopulationRule.cs" />
+    <Compile Include="Artifacts\Universe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

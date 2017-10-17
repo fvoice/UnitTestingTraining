@@ -1,14 +1,15 @@
-﻿namespace GameOfLife
+﻿namespace GameOfLife.Artifacts
 {
 	public class Citizen
 	{
-		private Universe _universe;
-
 		public bool IsAlive { private set; get; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-		public Citizen(Universe universe)
+        public Citizen(int x, int y)
 		{
-			_universe = universe;
+            X = x;
+            Y = y;
 		}
 
 		public void SetAlive()
@@ -19,11 +20,6 @@
 		public void Die()
 		{
 			IsAlive = false;
-		}
-
-		public void LiveDay()
-		{
-			
 		}
 	}
 }
