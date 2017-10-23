@@ -76,5 +76,14 @@ namespace ClassGreeting
 
 			greeting.Should().Be("Hello, Jerry and Bob, Mike.");
 		}
+		
+		[TestCase("Jerry", "Bob", "Mike", "Hello, Jerry, Bob and Mike.")]
+		[TestCase("Jerry", null, "Mike", "Hello, Jerry and Mike.")]
+		public void Greet_should_say_hello_for_arrays_test_cases(string name1, string name2, string name3, string expected) //9
+		{
+			string greeting = _doorman.Greet(name1, name2, name3);
+
+			greeting.Should().Be(expected);
+		}
 	}
 }

@@ -16,6 +16,8 @@ namespace ClassGreeting
 		{
 			if (names == null) return DEFAULT_HELLO_FORMAT_STRING;
 
+			names = names.Where(x => x != null).ToArray();
+
 			var upperCaseNames = names.Where(x => x.All(Char.IsUpper)).ToArray();
 			var usualNames = names.Except(upperCaseNames).ToArray();
 
