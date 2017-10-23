@@ -286,3 +286,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 /GameOfLife/GameOfLife.sln.DotSettings
+GameOfLife/GameOfLife/GameOfLife.csproj.DotSettings

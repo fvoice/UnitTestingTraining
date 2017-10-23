@@ -6,30 +6,29 @@ namespace GameOfLife.Artifacts
 {
     public class Universe
 	{
-		private readonly Citizen[,] _cells;
+		private readonly Citizen[,] _citizens;
         private readonly Rule[] _rules;
-		private readonly int _dimension;
 
 		public Universe(int i, Rule[] rules)
 		{
             if (rules == null || !rules.Any())
             {
-                throw new ArgumentException("Universe can't exist without rules", nameof(rules));
+                throw new ArgumentException("Universe can't exist without rules", "rules");
             }
 
-            _dimension = i;
-			_cells = new Citizen[i, i];
+            Dimension = i;
+			_citizens = new Citizen[i, i];
             _rules = rules;
 		}
 
-        public int Dimension => _dimension;
+        public int Dimension { get; private set; }
 
-	    public Citizen this[int x, int y]
+		public Citizen this[int x, int y]
 		{
 			get
 			{
-				if (x >= _dimension || y >= _dimension || x < 0 || y < 0) return null;
-				return _cells[x, y] ?? (_cells[x, y] = new Citizen(x, y));
+				if (x >= Dimension || y >= Dimension || x < 0 || y < 0) return null;
+				return _citizens[x, y] ?? (_citizens[x, y] = new Citizen(x, y));
 			}
 		}
 

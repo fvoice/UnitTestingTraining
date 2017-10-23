@@ -33,38 +33,13 @@ namespace GameOfLife.Tests
         [Test]
         public void Init_should_fault_witout_rules()
         {
-            bool exceptionOccured = false;
-            try
-            {
-                // Arrange
-                // Act
-                new Universe(DEFAULT_DIMENSION, null);
-            }
-            catch (Exception)
-            {
-                exceptionOccured = true;
-            }
-            
             // Assert
-            Assert.AreEqual(true, exceptionOccured, "Universe initialized without rules");
-
-            try
-            {
-                // Arrange
-                // Act
-                new Universe(DEFAULT_DIMENSION, new Rule[] { });
-            }
-            catch (Exception)
-            {
-                exceptionOccured = true;
-            }
-
-            // Assert
-            Assert.AreEqual(true, exceptionOccured, "Universe initialized without rules");
+			Assert.Throws<ArgumentException>(() => new Universe(DEFAULT_DIMENSION, null));
+			Assert.Throws<ArgumentException>(() => new Universe(DEFAULT_DIMENSION, new Rule[] { }));
         }
 
 	    [Test]
-	    public void LiveDay_should_kill_single_alive_cell()
+		public void UnderpopulationRule_should_kill_single_alive_citizen()
 	    {
             // Arrange
             Universe universe = new Universe(DEFAULT_DIMENSION, new[] { new UnderpopulationRule() });
@@ -75,6 +50,24 @@ namespace GameOfLife.Tests
 
 		    // Assert
 			Assert.IsFalse(universe[1, 1].IsAlive, "Cell 1:1 should be died");
+	    }
+
+	    [Test]
+		public void OverpopulationRule_should_kill_citizen_with_more_then_three_neighbors()
+	    {
+		    // Arrange
+		    Universe universe = new Universe(DEFAULT_DIMENSION, new Rule[] { new OverpopulationRule() });
+
+		    // Act
+		    universe[1, 1].SetAlive();
+		    universe[2, 1].SetAlive();
+		    universe[2, 2].SetAlive();
+		    universe[1, 2].SetAlive();
+		    universe[0, 2].SetAlive();
+		    universe.LiveDay();
+
+		    // Assert
+		    Assert.IsFalse(universe[1, 1].IsAlive, "Cell 1:1 should be died");
 	    }
     }
 }
